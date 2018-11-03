@@ -1,0 +1,32 @@
+version: '2.4'
+services:
+  local:
+    restart: "no"
+    build: .
+    command: npm run start
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    env_file: 
+      - dev.env
+    networks:
+      - backend
+    depends_on:
+      - mongodb
+
+  mongodb:
+      image: 'bitnami/mongodb:latest'
+      ports:
+        - "27018:27017"
+      environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+        - MONGODB_ENABLE_IPV6=yes
+      networks:
+        backend:
+            aliases:
+                - mongodb.local
+
+networks:
+    backend:
+        name: erick_backend
