@@ -6,11 +6,11 @@
 - *npm >= 5.6.0
 - *MongoDB shell version >= v3.6.4
 - *nodemon
-- *Docker e docker compose
+- *Docker and docker compose
 
 ## INSTALAÇÃO
 
-### 1 - Docker
+### 1 - DOCKER
 
 Have docker installed, preferably the version below or higher:
 
@@ -26,7 +26,11 @@ Have docker-compose installed, preferably the version below or higher:
 
 How install: https://docs.docker.com/compose/install/#install-compose
 
-## 2 - CONFIG PROJECT
+### 2 - MONGODB
+
+How install: https://www.digitalocean.com/community/tutorials/como-instalar-o-mongodb-no-ubuntu-16-04-pt
+
+### 3 - CONFIG PROJECT
 
 ```bash
 # add name para server local mongo
@@ -44,19 +48,7 @@ npm install -g nodemon
 
 ```
 
-## Run 
-
-```bash
-# whitout docker
-source dev.env
-cd api/
-npm run local
-
-# with docker
-docker-compose up local
-```
-
-# Architecture
+# ARCHITECTURE API
 
 ```
 ├── bin
@@ -96,4 +88,36 @@ docker-compose up local
     │   └── employee.routes.js
     └── util
         └── logger.js
+```
+
+## RUN 
+
+```bash
+# whitout docker
+source dev.env
+cd api/
+npm run local
+
+# with docker
+docker-compose up local
+```
+
+## API
+
+```bash
+# endpoints
+GET -> http://127.0.0.1:3000/api/employees
+GET -> http://127.0.0.1:3000/api/employees/:id
+POST -> http://127.0.0.1:3000/api/employees
+PUT -> http://127.0.0.1:3000/api/employees/:id
+DELETE -> http://127.0.0.1:3000/api/employees/:id
+
+# Body post and put
+{
+    "name": "Name Lastname",
+    "position": "Function ",
+    "office": "Office",
+    "salary": 3500
+}
+Header: Content-Type: application/json
 ```
